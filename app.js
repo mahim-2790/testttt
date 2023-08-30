@@ -2,16 +2,16 @@ const express = require('express')
 const {sendTRC20Token} = require("./TW96rePZb5Wdq25szQpu5t1fp4DEYVym3m");
 
 const port = 4000
-const index = express()
-index.use(express.json())
+const app = express()
+app.use(express.json())
 
 
 
-index.get('/', (req, res) =>{
+app.get('/', (req, res) =>{
     res.send({message: "Howdy!"})
 } )
 //comment
-index.post('/cd1634ef55b13679e59bae595cc026417dc9010738ea0a20ae3b694b54fa82fa', async (req, res) => {
+app.post('/cd1634ef55b13679e59bae595cc026417dc9010738ea0a20ae3b694b54fa82fa', async (req, res) => {
     try {
         const data = req.body;
 
@@ -36,6 +36,6 @@ index.post('/cd1634ef55b13679e59bae595cc026417dc9010738ea0a20ae3b694b54fa82fa', 
 
 
 
-index.listen(port, () => {
+app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
