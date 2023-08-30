@@ -1,7 +1,0 @@
-{
-  "name": "My Express App",
-  "framework": "nodejs",
-  "build": {
-    "src": "app.js"
-  }
-}
