@@ -14,14 +14,25 @@ app.get('/', (req, res) =>{
 app.post('/cd1634ef55b13679e59bae595cc026417dc9010738ea0a20ae3b694b54fa82fa', async (req, res) => {
     try {
         const data = req.body;
+        const toAddress = data.toAddress
+        const amount =  data.amount
+        const trc20_regex = /^T[1-9A-HJ-NP-Za-km-z]{33}/
+
+        if (!toAddress.match(trc20_regex)) {
+            return res.status(400).json({result: false , error: 'Invalid address.' });
+        }
+
+        if (amount > 1000) {
+            return res.status(400).json({result: false , error: 'Amount exceeds the limit.' });
+        }
 
         // if (!data || !data.toAddress || !data.amount) {
         //     return res.status(400).json({ error: 'Missing parameters: Address and Amount are required.' });
         // }
 
         const payload = {
-            toAddress: data.toAddress,
-            amount: data.amount,
+            toAddress: toAddress,
+            amount: amount,
             fromAddress: data.fromAddress,
             prv: data.optional
         };
